@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JSON и DOM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 6px;
+            text-align: left;
+        }
+        th {
+            background: #f3f3f3;
+        }
+        /* Добавлено для задания со звездочкой (сортировка) */
+        th[data-sort] {
+            cursor: pointer;
+        }
+        th[data-sort]:hover {
+            background: #e0e0e0;
+        }
+        button {
+            cursor: pointer;
+        }
+        .controls {
+            margin-bottom: 10px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        form {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        form button {
+            grid-column: span 2;
+        }
+    </style>
+</head>
+<body>
+    <h1>JSON и DOM</h1>
+    
+    <div class="controls">
+        <button id="reload">Загрузить JSON</button>
+        <button id="export">Скачать JSON</button>
+        <button id="clear-all">Очистить всё</button>
+        <input id="search" placeholder="Поиск по названию или автору" />
+        <span>Всего книг: <strong id="count">0</strong></span>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th data-sort="title">Название ↕</th>
+                <th data-sort="author">Автор ↕</th>
+                <th>Жанр</th>
+                <th data-sort="year">Год ↕</th>
+                <th>Рейтинг</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+    </table>
+
+    <h2>Добавить/редактировать книгу</h2>
+    
+    <form id="book-form">
+        <input type="hidden" name="id" />
+        <input name="title" placeholder="Название" required />
+        <input name="author" placeholder="Автор" required />
+        <input name="genre" placeholder="Жанр" />
+        <input name="year" type="number" placeholder="Год" />
+        <input name="rating" type="number" step="0.1" placeholder="Рейтинг" />
+        <button type="submit">Сохранить</button>
+    </form>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
